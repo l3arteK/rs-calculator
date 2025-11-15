@@ -1,12 +1,20 @@
 
 
-full_lenght = int(input('Podaj całkowitą długość: '))
-a_lenght = int(input('Podaj długość sekcji a: '))
-a_condition = int(input('Podaj warunek do sekcji a (sama liczba): '))
-b_lenght = int(input('Podaj długość sekcji b: '))
-b_condition = int(input('Podaj warunek do sekcji b(sama liczba): '))
-c_condition = int(input('Podaj warunek do sekcji c(sama liczba): '))
+# full_lenght = int(input('Podaj całkowitą długość: '))
+# a_lenght = int(input('Podaj długość sekcji a: '))
+# a_condition = int(input('Podaj warunek do sekcji a (sama liczba): '))
+# b_lenght = int(input('Podaj długość sekcji b: '))
+# b_condition = int(input('Podaj warunek do sekcji b(sama liczba): '))
+# c_condition = int(input('Podaj warunek do sekcji c(sama liczba): '))
+# resolution = int(input('Podaj dokładność odległości: '))
 
+full_lenght = 4515
+a_lenght = 610
+b_lenght = 970
+a_condition = 210
+b_condition = 300
+c_condition = 250
+resolution = 1
 current_section = 0
 
 def checkCondition(current_section,current_condition, next_condition, section_max_lenght):
@@ -26,14 +34,14 @@ a_division = 0
 b_division = 0
 c_division = 0
 
-for i in range (100):
-    for j in range(100):
+for i in range (int(a_condition/resolution)):
+    for j in range(int(b_condition/resolution)):
         a_division = 0
         b_division = 0
         c_division = 0
         current_section = 0
-        current_condition = a_condition + i
-        next_condition = b_condition + j
+        current_condition = a_condition - i * resolution
+        next_condition = b_condition - j * resolution
         while checkCondition(current_section, current_condition,next_condition, a_lenght):
             current_section += current_condition
             a_division +=1
@@ -41,13 +49,13 @@ for i in range (100):
             current_section += next_condition
             b_division+=1
 
-        i = 0
+        k = 0
         a = full_lenght -  (current_section *2 )
         b = c_condition
         
-        while a%b != 0 and i < 50:
-            i+=1
-            b-=1
+        while a%b != 0 and k < 50:
+            k+=1
+            b-=1 * resolution
         if a%b == 0:
             c_division = a/b
             if(2*(a_division + b_division) + c_division < best_division):

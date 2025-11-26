@@ -206,7 +206,6 @@ while running:
 
         toggle.handle_event(event)
 
-
         if event.type == pygame.MOUSEBUTTONDOWN:
             btn_top = button_center_y - 20
             btn_bottom = button_center_y + 20
